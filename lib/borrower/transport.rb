@@ -1,5 +1,11 @@
+require 'fileutils'
+
 module Borrower
   module Transport
+
+    def foo
+      "foo"
+    end
 
     # routes a file from -> to
     # @param from [String]
@@ -18,7 +24,8 @@ module Borrower
     # @param content [String]
     # @param to [String]
     def put content, to
-      File.open( to, 'w+' ) do |file|
+      FileUtils.mkdir_p( File.dirname(to) )
+      File.open( to, 'w' ) do |file|
         file.write content
       end
     end
