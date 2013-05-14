@@ -10,6 +10,7 @@ module Borrower
       # @return [String] the contents
       def contents path
         if exists? path
+          IO.read(path)
         else
           raise "nothing exists at the provided path '#{path}'"
         end
