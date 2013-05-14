@@ -29,6 +29,10 @@ describe Borrower::Path do
       Borrower::Path.contents( File.join( Dir.pwd, 'spec/fixture', "file.txt" ) ).should == "Hi I'm a file"
     end
 
+    it "returns the content of a remote file" do
+      Borrower::Path.contents( "https://gist.github.com/stevenosloan/5578606/raw/97ab1305184bdeac33472f9f1fcc1c9e278a1bb3/dummy.txt" ).should == "Hello I'm a file"
+    end
+
     it "raises an error for a missing file" do
       expect{ Borrower::Path.contents( "this/file/is/missing.rb" ) }.to raise_error(RuntimeError)
     end
