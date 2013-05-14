@@ -27,6 +27,10 @@ module Borrower
       # @param path [String]
       # @return [Boolean]
       def remote? path
+        pattern = /http[s]?:\/\//
+        if path.match(pattern)
+          return true
+        end
 
         return false
       end
