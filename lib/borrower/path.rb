@@ -1,7 +1,3 @@
-require 'net/http'
-require "net/https"
-require "uri"
-
 module Borrower
   module Path
     class << self

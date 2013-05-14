@@ -35,6 +35,7 @@ describe Borrower::Path do
 
     it "raises an error for a missing file" do
       expect{ Borrower::Path.contents( "this/file/is/missing.rb" ) }.to raise_error(RuntimeError)
+      expect{ Borrower::Path.contents("http://www.google.com/this/is/missing") }.to raise_error(RuntimeError)
     end
 
   end

@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module Borrower
   module Transport
 
@@ -26,5 +24,8 @@ module Borrower
       end
     end
 
+    module_function :move
+    module_function :take
+    module_function :put
   end
 end
