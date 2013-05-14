@@ -37,4 +37,4 @@ If there is any thing you'd like to contribute or fix, please:
 
 License
 -------
-The statistrano gem is distributed under the MIT License.
+The borrower gem is distributed under the MIT License.
