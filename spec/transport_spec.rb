@@ -34,6 +34,13 @@ describe Borrower::Transport do
       move( File.join( Dir.pwd, 'spec/fixture', 'file.txt'), path )
       take( path ).should == "Hi I'm a file"
     end
+
+    it "overwrites an existing file" do
+      put "hello", path
+      take( path ).should == "hello" # just to make sure it was written to begin with
+      move( File.join( Dir.pwd, 'spec/fixture', 'file.txt'), path )
+      take( path ).should == "Hi I'm a file"
+    end
   end
 
 end
