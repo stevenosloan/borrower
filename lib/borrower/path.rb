@@ -1,3 +1,6 @@
+require 'net/http'
+require 'open-uri'
+
 module Borrower
   module Path
     class << self
@@ -17,9 +20,9 @@ module Borrower
       # @return [Boolean]
       def exists? path
         if remote? path
-          # use net-ssh to check response
+          return ( Net::HTTP.get_response( URI(path) ).message == "OK" )
         else
-          # File.exists? path
+          return File.exists? path
         end
       end
 
