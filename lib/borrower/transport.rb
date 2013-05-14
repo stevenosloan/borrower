@@ -3,10 +3,6 @@ require 'fileutils'
 module Borrower
   module Transport
 
-    def foo
-      "foo"
-    end
-
     # routes a file from -> to
     # @param from [String]
     def move from, to
