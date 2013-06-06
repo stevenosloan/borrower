@@ -22,7 +22,7 @@ module Borrower
       # @return [Boolean]
       def exists? path
         if remote? path
-          return ( fetch_from_remote(path).msg == "OK" )
+          return ( fetch_from_remote(path).msg.include? "OK" )
         else
           return File.exists? path
         end
