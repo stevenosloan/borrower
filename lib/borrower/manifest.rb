@@ -16,7 +16,11 @@ module Borrower
           matches << possibility if possibility.match( file )
         end
       end
-      matches.sort { |a,b| a.length <=> b.length }.first
+
+      path = matches.sort { |a,b| a.length <=> b.length }.first
+      return path if path
+
+      raise "Could not file #{file}"
     end
   end
 

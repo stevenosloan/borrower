@@ -26,4 +26,8 @@ describe Borrower::Manifest do
     Borrower.find("foo.txt").should == File.join( TMP, "files/foo.txt" )
   end
 
+  it "raises error if no file is found" do
+    expect { Borrower.find("doesnt_exist.txt") }.to raise_error
+  end
+
 end
