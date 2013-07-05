@@ -24,7 +24,6 @@ module Borrower
       end
 
       def contents_from_file path
-        puts "path: #{path}"
         ::Borrower::Path.contents(::Borrower.find(path))
       end
 
