@@ -6,6 +6,7 @@ require "uri"
 
 # borrower
 require 'borrower/version'
+require 'borrower/manifest'
 require 'borrower/path'
 require 'borrower/transport'
 
