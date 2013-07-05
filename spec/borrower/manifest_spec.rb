@@ -4,13 +4,11 @@ describe Borrower::Manifest do
 
   before :all do
     given_files [ "baz.txt", "files/baz.txt", "files/woo.txt", "files/foo.txt" ]
-    given_file "test.txt", "it's me"
     Borrower.manifest do |m|
       m.file "me", File.join( TMP, "test.txt" )
       m.dir File.join( TMP )
       m.dir File.join( TMP, 'files' )
     end
-
   end
 
   after :all do

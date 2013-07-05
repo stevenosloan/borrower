@@ -19,7 +19,7 @@ describe Borrower do
       Borrower::Transport.take( path ).should == "Hello I'm a file"
     end
 
-    it "raises an error if missing to:" do
+    it "raises an error if missing arg with key 'to'" do
       expect{ borrow( "foo", away: "bar" )}.to raise_error(ArgumentError)
     end
   end
