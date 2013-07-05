@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Borrower::Manifest do
 
-  before :all do
+  before :each do
     given_files [ "baz.txt", "files/baz.txt", "files/woo.txt", "files/foo.txt" ]
     Borrower.manifest do |m|
       m.file "me", File.join( TMP, "test.txt" )
@@ -11,7 +11,7 @@ describe Borrower::Manifest do
     end
   end
 
-  after :all do
+  after :each do
     cleanup_tmp
   end
 
