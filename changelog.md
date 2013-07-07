@@ -1,3 +1,6 @@
+# 0.1.1
+- fix missing implementation of the borrow method using find
+
 # 0.1.0
 - add manifest for naming files and adding directories
 - add merge/concatenation functionality
