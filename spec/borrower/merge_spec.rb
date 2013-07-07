@@ -20,10 +20,10 @@ describe "moving files with a merge" do
   it "handles multiple files to merge with" do
     given_file "woo.txt", "woo"
     given_file "multiple.txt", <<-content
-#= borrow 'foo.txt'
-#= borrow 'woo.txt'
+      #= borrow 'foo.txt'
+      #= borrow 'woo.txt'
 
-Some other things
+      Some other things
     content
     Borrower.manifest do |m|
       m.file 'multiple.txt', File.join( TMP, 'multiple.txt' )
@@ -31,10 +31,10 @@ Some other things
     end
 
     Borrower.merge(Borrower::Transport.take(Borrower.find("multiple.txt"))).should == <<-output
-hello I'm merged text
-woo
+      hello I'm merged text
+      woo
 
-Some other things
+      Some other things
     output
   end
 
