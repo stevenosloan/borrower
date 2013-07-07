@@ -4,42 +4,44 @@ require 'borrower/transport'
 describe Borrower::Transport do
   include Borrower::Transport
 
+  before :each do
+    given_file "file.txt", "Hi I'm a file"
+  end
+
+  after :each do
+    cleanup_tmp
+  end
+
+  let (:local_file)       { File.join( TMP, 'file.txt' ) }
+  let (:destination_path) { File.join( TMP, 'destination/file.txt' ) }
+
+
   describe "#take" do
     it "returns the correct contents" do
-      take( File.join( Dir.pwd, 'spec/fixture', "file.txt" ) ).should == "Hi I'm a file"
+      take( local_file ).should == "Hi I'm a file"
     end
   end
 
   describe "#put" do
-    path = File.join( Dir.pwd, 'tmp', 'file.txt' )
-
-    after(:each) do
-      `rm -rf #{File.dirname(path)}`
-    end
 
     it "puts a string to a file" do
-      put "hello", path
-      take( path ).should == "hello"
+      put "hello", destination_path
+      take( destination_path ).should == "hello"
     end
   end
 
   describe "#move" do
-    path = File.join( Dir.pwd, 'tmp', 'file.txt' )
-
-    after(:each) do
-      `rm -rf #{File.dirname(path)}`
-    end
 
     it "moves the file" do
-      move( File.join( Dir.pwd, 'spec/fixture', 'file.txt'), path )
-      take( path ).should == "Hi I'm a file"
+      move( local_file, destination_path )
+      take( destination_path ).should == "Hi I'm a file"
     end
 
     it "overwrites an existing file" do
-      put "hello", path
-      take( path ).should == "hello" # just to make sure it was written to begin with
-      move( File.join( Dir.pwd, 'spec/fixture', 'file.txt'), path )
-      take( path ).should == "Hi I'm a file"
+      put "hello", destination_path
+      take( destination_path ).should == "hello" # just to make sure it was written to begin with
+      move( local_file, destination_path )
+      take( destination_path ).should == "Hi I'm a file"
     end
   end
 
