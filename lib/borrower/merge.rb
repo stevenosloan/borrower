@@ -1,24 +1,28 @@
 module Borrower
   class << self
-    def merge content
-      merger = Merge.new content
-      merger.output
+    def merge content, options={}
+      Merge.new( content, options ).output
     end
   end
 
   class Merge
-    def initialize content
+    def initialize content, options={}
       @content = content
+      @comment_symbol = options.fetch(:comment) { default_comment_symbol }
     end
 
     def output
-      sub_borrow_statements
+      merge_borrow_statements
     end
 
     private
 
-      def sub_borrow_statements
-        @content.gsub /#= borrow '(.*?)'/ do |match|
+      def default_comment_symbol
+        "#"
+      end
+
+      def merge_borrow_statements
+        @content.gsub /(?:#{@comment_symbol})= borrow '(.*?)'/ do |match|
           contents_from_file($1)
         end
       end
