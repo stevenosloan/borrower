@@ -3,6 +3,7 @@ Borrower
 
 For borrowing and/or concatenating little snippets.
 
+[![Build Status](https://travis-ci.org/stevenosloan/borrower.png?branch=feature/borrow_merge)](https://travis-ci.org/stevenosloan/borrower) [![Code Climate](https://codeclimate.com/github/stevenosloan/borrower.png)](https://codeclimate.com/github/stevenosloan/borrower)
 
 Use
 ---
