@@ -52,6 +52,33 @@ borrow "baz.txt", to: "/destination/baz.txt"
 ```
 
 
+#### Merging/Concatenation
+
+Borrower also supports merging files it knows about as it is moving them by passing the `merge: true` param. Just add `#= borrow 'file_name'` anywhere in the file you're moving.
+
+```ruby
+# foo.rb
+I'm a line from foo.rb
+
+# woo.rb
+#= borrow 'foo.rb'
+
+borrow 'woo.rb', to: 'concat.rb', merge: true
+# => results in the file:
+# concat.rb
+I'm a line from foo.rb
+```
+
+You can set the comment character as well, so in the case we would like to merge jquery into the head of a js file, you could do it like so:
+
+```javascript
+//= borrow 'jquery'
+$(document).ready( function(){
+  alert("the document is ready");
+})
+```
+
+
 Testing
 -------
 
