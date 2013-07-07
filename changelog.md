@@ -1,3 +1,7 @@
+# 0.1.0
+- add manifest for naming files and adding directories
+- add merge/concatenation functionality
+
 # 0.0.3
 - use content encoding for the file write
 
