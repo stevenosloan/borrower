@@ -6,15 +6,15 @@ module Borrower
       # @param path [String]
       # @return [String] the contents
       def contents path
-        if exists? path
-          if remote? path
-            fetch_from_remote(path).body
-          else
-            return IO.read(path)
-          end
+        path = Borrower.find(path)
+
+        if remote?(path) && exists?(path)
+          return fetch_from_remote(path).body
         else
-          raise "nothing exists at the provided path '#{path}'"
+          return IO.read(path)
         end
+
+        raise "nothing exists at the provided path '#{path}'"
       end
 
       # check if the file exists for borrowing

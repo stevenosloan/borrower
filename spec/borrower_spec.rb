@@ -26,6 +26,18 @@ describe Borrower do
     Borrower::Transport.take( file_destination ).should == "Hello I'm a file"
   end
 
+  it "borrows named local and remote files" do
+    Borrower.manifest do |m|
+      m.file "local", local_file
+      m.file "remote", remote_file
+    end
+    borrow "local", to: file_destination
+    borrow "remote", to: File.join( TMP, "remote.txt" )
+
+    Borrower::Transport.take( file_destination ).should == "Hi I'm a file"
+    Borrower::Transport.take( File.join( TMP, "remote.txt" ) ).should == "Hello I'm a file"
+  end
+
   it "merges files if merge is set to true" do
     borrow merge_file, to: file_destination, merge: true
     Borrower::Transport.take( file_destination ).should == "Hi I'm a file"

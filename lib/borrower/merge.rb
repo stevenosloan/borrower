@@ -28,7 +28,7 @@ module Borrower
       end
 
       def contents_from_file path
-        ::Borrower::Path.contents(::Borrower.find(path))
+        ::Borrower::Path.contents(path)
       end
 
   end
