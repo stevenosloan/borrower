@@ -19,7 +19,7 @@ module Borrower
     # @param to [String]
     def put content, to
       FileUtils.mkdir_p( File.dirname(to) )
-      File.open( to, 'w' ) do |file|
+      File.open( to, 'w', internal_encoding: content.encoding ) do |file|
         file.write content
       end
     end
