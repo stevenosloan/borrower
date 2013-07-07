@@ -22,11 +22,8 @@ module Borrower::DSL
   # @param args [Hash] only to: is looked at
   #
   def borrow path, args
-    unless args.has_key? :to
-      raise ArgumentError, "missing 'to:' argument"
-    end
-
-    Borrower::Transport.move path, args[:to]
+    destination = args.delete(:to) { raise ArgumentError, "missing 'to:' argument" }
+    Borrower::Transport.move path, destination, args
   end
 
 end

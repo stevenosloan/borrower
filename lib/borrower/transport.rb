@@ -3,8 +3,11 @@ module Borrower
 
     # routes a file from -> to
     # @param from [String]
-    def move from, to
-      put( take(from), to )
+    # @param args [Hash]
+    def move from, to, args={}
+      content = take(from)
+      content = Borrower.merge(content) if args[:merge]
+      put( content, to )
     end
 
     # handles taking a file
