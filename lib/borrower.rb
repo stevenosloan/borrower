@@ -15,13 +15,20 @@ require 'borrower/public_api'
 module Borrower::DSL
 
   # borrow a file and put it somewhere
-  # call syntax:
+  # by adding a merge: argument of true borrower will
+  # parse the contents for additional borrow statements
+  # to merge
+  # @example borrow source to destination
+  #   borrow "source/file", to: "destination/file"
   #
-  #    Borrower.borrow "path/to/file", to: "place/to/put/file"
+  # @example borrow and merge source to destination
+  #   borrow "source/file", to: "file/destination", merge: true
   #
-  # @param path [String]
-  # @param args [Hash] only to: is looked at
-  #
+  # @param [String] path
+  # @param [Hash] args
+  # @option args [String] :to the destination path
+  # @option args [Boolean] :merge wether to merge or not, defaults to `false`
+  # @return [Void]
   def borrow path, args
     destination = args.delete(:to) { raise ArgumentError, "missing 'to:' argument" }
     Borrower::Transport.move path, destination, args

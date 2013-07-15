@@ -2,8 +2,9 @@ module Borrower
   module Transport
 
     # routes a file from -> to
-    # @param from [String]
-    # @param args [Hash]
+    # @param [String] from
+    # @param [String] to
+    # @param [Hash] args
     def move from, to, args={}
       content = take(from)
       content = Borrower.merge(content) if args[:merge]
@@ -11,15 +12,15 @@ module Borrower
     end
 
     # handles taking a file
-    # @param from [String]
+    # @param [String] from
     # @return [String]
     def take from
       Path.contents(from)
     end
 
     # puts a file somewhere
-    # @param content [String]
-    # @param to [String]
+    # @param [String] content
+    # @param [String] to
     def put content, to
       FileUtils.mkdir_p( File.dirname(to) )
       File.open( to, 'w', internal_encoding: content.encoding ) do |file|
