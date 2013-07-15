@@ -1,11 +1,6 @@
 module Borrower
-  class << self
-    def merge content, options={}
-      Merge.new( content, options ).output
-    end
-  end
-
   class Merge
+
     def initialize content, options={}
       @content = content
       @comment_symbol = options.fetch(:comment) { default_comment_symbol }
@@ -28,7 +23,7 @@ module Borrower
       end
 
       def contents_from_file path
-        ::Borrower::Path.contents(path)
+        Path.contents(path)
       end
 
   end

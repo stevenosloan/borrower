@@ -10,6 +10,7 @@ require 'borrower/manifest'
 require 'borrower/merge'
 require 'borrower/path'
 require 'borrower/transport'
+require 'borrower/public_api'
 
 module Borrower::DSL
 

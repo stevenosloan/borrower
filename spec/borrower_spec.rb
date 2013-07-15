@@ -18,12 +18,12 @@ describe Borrower do
 
   it "borrows local files" do
     borrow local_file, to: file_destination
-    Borrower::Transport.take( file_destination ).should == "Hi I'm a file"
+    Borrower.take( file_destination ).should == "Hi I'm a file"
   end
 
   it "borrows remote files" do
     borrow remote_file, to: file_destination
-    Borrower::Transport.take( file_destination ).should == "Hello I'm a file"
+    Borrower.take( file_destination ).should == "Hello I'm a file"
   end
 
   it "borrows named local and remote files" do
@@ -34,13 +34,13 @@ describe Borrower do
     borrow "local", to: file_destination
     borrow "remote", to: File.join( TMP, "remote.txt" )
 
-    Borrower::Transport.take( file_destination ).should == "Hi I'm a file"
-    Borrower::Transport.take( File.join( TMP, "remote.txt" ) ).should == "Hello I'm a file"
+    Borrower.take( file_destination ).should == "Hi I'm a file"
+    Borrower.take( File.join( TMP, "remote.txt" ) ).should == "Hello I'm a file"
   end
 
   it "merges files if merge is set to true" do
     borrow merge_file, to: file_destination, merge: true
-    Borrower::Transport.take( file_destination ).should == "Hi I'm a file"
+    Borrower.take( file_destination ).should == "Hi I'm a file"
   end
 
   it "raises an error if missing arg with key 'to'" do
