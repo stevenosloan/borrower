@@ -1,3 +1,7 @@
+# 0.2.0
+- layout a public api for singleton methods
+- there are possibly breaking changes from 0.1.x
+
 # 0.1.1
 - fix missing implementation of the borrow method using find
 
