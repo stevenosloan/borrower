@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.authors       = ["Steven Sloan"]
   s.email         = ["stevenosloan@gmail.com"]
   s.homepage      = "http://github.com/stevenosloan/borrower"
+  s.license       = 'MIT'
 
   s.files         = Dir["{lib}/**/*.rb"]
   s.test_files    = Dir["spec/**/*.rb"]
