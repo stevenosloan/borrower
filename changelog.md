@@ -1,3 +1,6 @@
+# 0.2.1
+- add license type to gemspec (https://github.com/stevenosloan/borrower/issues/1)
+
 # 0.2.0
 - layout a public api for singleton methods
 - there are possibly breaking changes from 0.1.x
