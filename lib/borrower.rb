@@ -28,9 +28,18 @@ module Borrower::DSL
   # @option args [String] :to the destination path
   # @option args [Boolean] :merge wether to merge or not, defaults to `false`
   # @return [Void]
-  def borrow path, args
+  def borrow path, args={}, &block
     destination = args.delete(:to) { raise ArgumentError, "missing 'to:' argument" }
-    Borrower.put Borrower.take(path), destination , args
+    content = ContentString.new( Borrower.take(path) )
+    yield self if block_given?
+    Borrower.put content, destination, args
+  end
+
+  class ContentString
+    attr_accessor :content
+    def initialize content
+      @content = content
+    end
   end
 
 end
