@@ -30,16 +30,11 @@ module Borrower::DSL
   # @return [Void]
   def borrow path, args={}, &block
     destination = args.delete(:to) { raise ArgumentError, "missing 'to:' argument" }
-    content = ContentString.new( Borrower.take(path) )
-    yield self if block_given?
-    Borrower.put content, destination, args
-  end
-
-  class ContentString
-    attr_accessor :content
-    def initialize content
-      @content = content
+    content = Borrower.take(path)
+    if block_given?
+      content = yield content
     end
+    Borrower.put content, destination, args
   end
 
 end

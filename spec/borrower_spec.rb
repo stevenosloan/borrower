@@ -49,10 +49,10 @@ describe Borrower do
 
   it "yields content when passed a block" do
     borrow local_file, to: file_destination do |content|
-      obj.content = "foo"
+      content + " foo"
     end
 
-    Borrower.take( file_destination ).should == "foo"
+    Borrower.take( file_destination ).should == "Hi I'm a file foo"
   end
 
 end
