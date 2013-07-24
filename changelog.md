@@ -1,3 +1,6 @@
+# 0.3.0
+- combine path & transport modules, will break if you were using them directly
+
 # 0.2.1
 - add license type to gemspec (https://github.com/stevenosloan/borrower/issues/1)
 
