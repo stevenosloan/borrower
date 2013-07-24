@@ -17,6 +17,16 @@ borrow "/path/to/file.txt", to: "/destination/file.txt"
 borrow "http://code.jquery.com/jquery-1.9.1.js", to: "assets/vendor/jquery.1.9.1.js"
 ```
 
+You can also manipulate the content of the file before it is written by passing a block, and returning your desired output
+
+```ruby
+require 'borrower'
+
+borrow '/path/to/file.txt', to: '/now/with/feeling.txt' do |content|
+  content.gsub('.', '!')
+end
+```
+
 
 #### Named files & lookup paths
 

@@ -23,6 +23,11 @@ module Borrower::DSL
   # @example borrow and merge source to destination
   #   borrow "source/file", to: "file/destination", merge: true
   #
+  # @example borrow and gsub all exclamation marks
+  #   borrow "source/file", to: "file/destination" do |content|
+  #     content.gsub("!", '.')
+  #   end
+  #
   # @param [String] path
   # @param [Hash] args
   # @option args [String] :to the destination path
