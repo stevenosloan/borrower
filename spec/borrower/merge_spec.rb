@@ -34,7 +34,7 @@ describe "moving files with a merge" do
       m.file 'woo.txt', File.join( TMP, 'woo.txt' )
     end
 
-    Borrower.merge(Borrower::Transport.take(Borrower.find("multiple.txt"))).should == <<-output
+    Borrower.merge( Borrower.take(Borrower.find("multiple.txt"))).should == <<-output
       hello I'm merged text
       woo
 

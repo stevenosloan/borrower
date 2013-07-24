@@ -18,7 +18,8 @@ module Borrower
     end
 
     def find file
-      return file if Path.remote?(file) || Path.exists?(file)
+      obj = Content::Item.new(file)
+      return file if obj.remote? || obj.exists?
 
       path = check_for_file_in_manifest_files(file) || false
       return path if path

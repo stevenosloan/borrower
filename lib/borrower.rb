@@ -6,10 +6,9 @@ require "uri"
 
 # borrower
 require 'borrower/version'
+require 'borrower/content'
 require 'borrower/manifest'
 require 'borrower/merge'
-require 'borrower/path'
-require 'borrower/transport'
 require 'borrower/public_api'
 
 module Borrower::DSL
@@ -31,7 +30,7 @@ module Borrower::DSL
   # @return [Void]
   def borrow path, args
     destination = args.delete(:to) { raise ArgumentError, "missing 'to:' argument" }
-    Borrower::Transport.move path, destination, args
+    Borrower.put Borrower.take(path), destination , args
   end
 
 end

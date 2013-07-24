@@ -23,7 +23,7 @@ module Borrower
       end
 
       def contents_from_file path
-        Path.contents(path)
+        Content.get(path)
       end
 
   end

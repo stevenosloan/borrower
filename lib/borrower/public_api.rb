@@ -8,7 +8,7 @@ module Borrower
     # @param [String] from the path to the file
     # @return [String] contents of the file
     def take from
-      Transport.take from
+      Borrower::Content.get from
     end
 
     # write the content to a destination file
@@ -16,8 +16,8 @@ module Borrower
     # @param [String] content content for the file
     # @param [String] to path to write contents to
     # @return [Void]
-    def put content, to
-      Transport.put content, to
+    def put content, to, *args
+      Borrower::Content.put content, to, args
     end
 
     # parse through the content and merge
