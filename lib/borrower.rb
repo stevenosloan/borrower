@@ -29,17 +29,17 @@ module Borrower::DSL
   #   end
   #
   # @param [String] path
-  # @param [Hash] args
-  # @option args [String] :to the destination path
-  # @option args [Boolean] :merge wether to merge or not, defaults to `false`
+  # @param [Hash] options
+  # @option options [String] :to the destination path
+  # @option options [Boolean] :merge wether to merge or not, defaults to `false`
   # @return [Void]
-  def borrow path, args={}, &block
-    destination = args.delete(:to) { raise ArgumentError, "missing 'to:' argument" }
+  def borrow path, options={}, &block
+    destination = options.delete(:to) { raise ArgumentError, "missing 'to:' argument" }
     content = Borrower.take(path)
     if block_given?
       content = yield content
     end
-    Borrower.put content, destination, args
+    Borrower.put content, destination, options
   end
 
 end

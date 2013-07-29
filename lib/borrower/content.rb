@@ -18,10 +18,10 @@ module Borrower
         raise "nothing exists at the provided path '#{path}'"
       end
 
-      def put content, destination, args
+      def put content, destination, options={}
         FileUtils.mkdir_p( File.dirname(destination) )
         File.open( destination, 'w', internal_encoding: content.encoding ) do |file|
-          content = Borrower.merge(content) if args[0].fetch(:merge) { false }
+          content = Borrower.merge(content) if options.fetch(:merge) { false }
           file.write content
         end
       end
