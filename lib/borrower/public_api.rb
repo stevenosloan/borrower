@@ -16,8 +16,8 @@ module Borrower
     # @param [String] content content for the file
     # @param [String] to path to write contents to
     # @return [Void]
-    def put content, to, options={}
-      Borrower::Content.put content, to, options
+    def put content, to
+      Borrower::Content.put content, to
     end
 
     # parse through the content and merge
