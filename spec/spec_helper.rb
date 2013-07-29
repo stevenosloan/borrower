@@ -1,8 +1,4 @@
-require 'coveralls'
-Coveralls.wear!
-
 require 'rspec'
-require 'borrower'
 require 'fileutils'
 
 TMP = File.join( Dir.pwd, "tmp" )
@@ -33,3 +29,8 @@ end
 def cleanup_tmp
   `rm -rf #{TMP}`
 end
+
+require 'coveralls'
+Coveralls.wear!
+
+require 'borrower'
