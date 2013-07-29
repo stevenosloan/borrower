@@ -1,3 +1,7 @@
+# 0.6.0
+- add file type option to merge
+- fix options being passed to merge from `borrow` method
+
 # 0.5.0
 - merge has been removed from Borrower.put
 - add coveralls coverage
