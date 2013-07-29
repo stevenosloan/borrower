@@ -36,7 +36,7 @@ module Borrower::DSL
   def borrow path, options={}, &block
     destination = options.delete(:to) { raise ArgumentError, "missing 'to:' argument" }
     content = Borrower.take(path)
-    content = Borrower.merge(content) if options.fetch(:merge) { false }
+    content = Borrower.merge(content, options) if options.fetch(:merge) { false }
     if block_given?
       content = yield content
     end
