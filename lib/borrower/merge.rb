@@ -3,7 +3,7 @@ module Borrower
 
     def initialize content, options={}
       @content = content
-      @comment_symbol = options.fetch(:comment) { default_comment_symbol }
+      @comment_symbol = pick_comment_symbol options
     end
 
     def output
@@ -12,8 +12,10 @@ module Borrower
 
     private
 
-      def default_comment_symbol
-        "#"
+      def pick_comment_symbol options
+        options.fetch(:comment) do
+          CommentSymbol.find_symbol_for options.fetch(:type) { "default" }
+        end
       end
 
       def merge_borrow_statements
@@ -24,6 +26,31 @@ module Borrower
 
       def contents_from_file path
         Content.get(path)
+      end
+
+      module CommentSymbol
+        class << self
+
+          def find_symbol_for type
+            symbols.fetch(type) { default }
+          end
+
+          private
+
+            def default
+              "#"
+            end
+
+            def symbols
+              {
+                'js'          => '//',
+                'javascript'  => '//',
+                'css'         => '//',
+                'stylesheet'  => '//'
+              }
+            end
+
+        end
       end
 
   end

@@ -23,7 +23,7 @@ describe "moving files with a merge" do
 
   it "lets you pass file types to change the comment symbol" do
     Borrower.merge( "//= borrow 'foo.txt'", type: 'js' ).should == "hello I'm merged text"
-    Borrower.merge( "//= borrow 'foot.xt'", type: 'css' ).should == "hello I'm merged text"
+    Borrower.merge( "//= borrow 'foo.txt'", type: 'css' ).should == "hello I'm merged text"
   end
 
   it "handles multiple files to merge with" do
