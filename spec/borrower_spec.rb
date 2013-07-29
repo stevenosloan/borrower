@@ -38,6 +38,11 @@ describe Borrower do
     Borrower.take( File.join( TMP, "remote.txt" ) ).should == "Hello I'm a file"
   end
 
+  it "doesn't merge file if merge is not set" do
+    borrow merge_file, to: file_destination
+    Borrower.take( file_destination ).should == "#= borrow '#{File.join( TMP, 'file.txt')}'"
+  end
+
   it "merges files if merge is set to true" do
     borrow merge_file, to: file_destination, merge: true
     Borrower.take( file_destination ).should == "Hi I'm a file"
