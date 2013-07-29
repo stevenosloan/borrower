@@ -1,3 +1,7 @@
+# 0.5.0
+- merge has been removed from Borrower.put
+- add coveralls coverage
+
 # 0.4.0
 - add file content manipulation by passing a block to `borrow`, (https://github.com/stevenosloan/borrower/issues/3)
 
