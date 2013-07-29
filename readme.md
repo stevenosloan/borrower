@@ -3,7 +3,7 @@ Borrower
 
 For borrowing and/or concatenating little snippets.
 
-[![Build Status](https://travis-ci.org/stevenosloan/borrower.png?branch=feature/borrow_merge)](https://travis-ci.org/stevenosloan/borrower) [![Code Climate](https://codeclimate.com/github/stevenosloan/borrower.png)](https://codeclimate.com/github/stevenosloan/borrower) [![Coverage Status](https://coveralls.io/repos/stevenosloan/borrower/badge.png?branch=master)](https://coveralls.io/r/stevenosloan/borrower?branch=master)
+[![Build Status](https://travis-ci.org/stevenosloan/borrower.png?branch=feature/borrow_merge)](https://travis-ci.org/stevenosloan/borrower) [![Coverage Status](https://coveralls.io/repos/stevenosloan/borrower/badge.png?branch=master)](https://coveralls.io/r/stevenosloan/borrower?branch=master) [![Code Climate](https://codeclimate.com/github/stevenosloan/borrower.png)](https://codeclimate.com/github/stevenosloan/borrower)
 
 Use
 ---
@@ -80,13 +80,31 @@ borrow 'woo.rb', to: 'concat.rb', merge: true
 I'm a line from foo.rb
 ```
 
-You can set the comment character as well, so in the case we would like to merge jquery into the head of a js file, you could do it like so:
+Borrower defaults to `#` as the comment character, but you can pass a file type to look for other comment symbols.
 
 ```javascript
+# script.js
 //= borrow 'jquery'
 $(document).ready( function(){
   alert("the document is ready");
 })
+```
+```ruby
+# borrow.rb
+borrow 'script.js', to: 'public/script.js', merge: true, type: 'js'
+```
+
+You can set a custom comment character as well, so if you were working in a language we don't have a comment symbol for (though please add a pull request for that), you could do it like so:
+
+```
+# your_file.txt
+??= borrow 'jquery'
+$(document).ready( function(){
+  alert("the document is ready");
+});
+
+# borrow.rb
+borrow 'your_file.txt', to: 'foo.txt', merge: true, comment: '??'
 ```
 
 
