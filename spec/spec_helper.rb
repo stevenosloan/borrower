@@ -1,8 +1,10 @@
 require 'rspec'
 require 'fileutils'
 
-if Gem::Specification.find_by_name('pry-debugger')
+begin
   require 'pry-debugger'
+rescue LoadError
+  puts "no biggie, but pry debugger isn't available"
 end
 
 TMP = File.join( Dir.pwd, "tmp" )
