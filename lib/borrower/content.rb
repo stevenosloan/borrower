@@ -9,11 +9,7 @@ module Borrower
         path  = Borrower.find(path)
         obj = Item.new( path )
 
-        if obj.remote? && obj.exists?
-          return obj.body
-        else
-          return IO.read(path)
-        end
+        return obj.content if obj.exists?
 
         raise "nothing exists at the provided path '#{path}'"
       end
@@ -44,8 +40,12 @@ module Borrower
         end
       end
 
-      def body
-        @_response.body
+      def content
+        if remote? && exists?
+          @_response.body
+        else
+          IO.read( @path )
+        end
       end
 
       private
