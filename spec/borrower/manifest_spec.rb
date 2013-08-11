@@ -10,24 +10,26 @@ describe Borrower::Manifest do
     cleanup_tmp
   end
 
+  let(:me_key)      { "me" }
   let(:me_file)     { File.join( TMP, "test.txt" ) }
+  let(:remote_key)  { "remote" }
   let(:remote_file) { "https://gist.github.com/stevenosloan/5578606/raw/97ab1305184bdeac33472f9f1fcc1c9e278a1bb3/dummy.txt" }
   let(:base_dir)  { File.join( TMP ) }
   let(:files_dir) { File.join( TMP, 'files' ) }
 
-  context "no manifest file" do
+  context "with no manifest file" do
 
     before :each do
       Borrower.manifest do |m|
-        m.file "me", me_file
-        m.file "remote", remote_file
+        m.file me_key, me_file
+        m.file remote_key, remote_file
         m.dir base_dir
         m.dir files_dir
       end
     end
 
     it "finds a file path based on key name if set" do
-      Borrower.find("me").should == me_file
+      Borrower.find(me_key).should == me_file
     end
 
     it "returns remote paths if given fully resolved" do
@@ -35,7 +37,7 @@ describe Borrower::Manifest do
     end
 
     it "finds named remote files" do
-      Borrower.find("remote").should == remote_file
+      Borrower.find(remote_key).should == remote_file
     end
 
     it "creates list of files from directories" do
@@ -53,31 +55,45 @@ describe Borrower::Manifest do
 
   context "with a borrower manifest file" do
 
-    before :all do
+    before :each do
       # ensure the manifest is reset
-      Borrower.send(:remove_instance_variable, :@_manifest)
+      if Borrower.send(:instance_variable_defined?, :@_manifest)
+        Borrower.send(:remove_instance_variable, :@_manifest)
+      end
+
+      # move working dir to TMP
+      Dir.chdir TMP
+    end
+
+    after :each do
+      # move the working dir to root
+      Dir.chdir ROOT
     end
 
     before :each do
-      given_file "multiple.txt", %Q{
-        files:
-          me: #{me_file}
-          remote: #{remote_file}
+      given_config %Q{
+files:
+  #{me_key}: #{me_file}
+  #{remote_key}: #{remote_file}
 
-        directories:
-          #{base_dir}
-          #{files_dir}
+directories:
+  #{base_dir}
+  #{files_dir}
       }
     end
 
+    it "detects that it is present" do
+      Borrower::Manifest::ConfigFile.present?.should be_true
+    end
+
     it "adds the given files to the manifest" do
-      Borrower.manifest.files.has_key?(me_file).should be_true
-      Borrower.manifest.files.has_key?(remote_file).should be_true
+      Borrower.manifest.files[me_key].should == me_file
+      Borrower.manifest.files[remote_key].should == remote_file
     end
 
     it "add the given directories to the manifest" do
-      Borrower.manifest.dir.include?( base_dir ).should be_true
-      Borrower.manifest.dir.include?( files_dir ).should be_true
+      Borrower.manifest.directories.include?( base_dir ).should be_true
+      Borrower.manifest.directories.include?( files_dir ).should be_true
     end
 
   end
