@@ -1,6 +1,9 @@
 require 'rspec'
 require 'fileutils'
-require 'pry-debugger'
+
+if Gem::Specification.find_by_name('pry-debugger')
+  require 'pry-debugger'
+end
 
 TMP = File.join( Dir.pwd, "tmp" )
 ROOT = Dir.pwd
