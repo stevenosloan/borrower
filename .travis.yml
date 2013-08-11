@@ -1,5 +1,5 @@
 language: ruby
-bundler_args: --without document
+bundler_args: --without document development
 rvm:
   - 2.0.0
   - 1.9.3

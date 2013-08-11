@@ -6,5 +6,8 @@ group :test do
   gem 'rake'
   gem 'rspec'
   gem 'coveralls', require: false
-  gem 'pry-debugger' unless ENV['TRAVIS']
+end
+
+group :development do
+  gem 'pry-debugger'
 end
