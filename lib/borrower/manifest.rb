@@ -1,3 +1,5 @@
+require 'borrower/manifest/file'
+
 module Borrower
   class Manifest
 
@@ -7,6 +9,12 @@ module Borrower
     def initialize
       @files = {}
       @directories = []
+
+      if Manifest::ConfigFile.present?
+        @manifest_file = Manifest::ConfigFile.new
+        @files = @files.merge( @manifest_file.files )
+        @directories = @directories.push( *@manifest_file.directories )
+      end
     end
 
     def file name, path
