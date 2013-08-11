@@ -1,7 +1,9 @@
 require 'rspec'
 require 'fileutils'
+require 'pry-debugger'
 
 TMP = File.join( Dir.pwd, "tmp" )
+ROOT = Dir.pwd
 
 def given_files list
   FileUtils.mkdir_p TMP
@@ -20,8 +22,8 @@ def given_file name, content
   end
 end
 
-def given_config contents
-  File.open( File.join( TMP, '.borrower' ), 'w' ) do |file|
+def given_config content
+  File.open( File.join( TMP, 'manifest.borrower' ), 'w' ) do |file|
     file.write content
   end
 end
