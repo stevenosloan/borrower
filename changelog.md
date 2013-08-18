@@ -1,3 +1,5 @@
+- implement a manifest file, must be called manifest.borrower for now
+
 # 0.6.0
 - add file type option to merge
 - fix options being passed to merge from `borrow` method

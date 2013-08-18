@@ -45,6 +45,18 @@ After configuring the manifest so, you can now borrow jquery by just using it's 
 borrow "jquery", to: "/destination/jquery.1.9.1.js"
 ```
 
+Borrower will also look for a manifest file named `manifest.borrower`. You can write your directory and file names in yaml format and they will be loaded from the manifest file.
+
+```ruby
+files:
+  name: path
+  jquery: "http://code.jquery.com/jquery-1.9.1.js"
+
+directories:
+  first/directory
+  another/directory
+```
+
 You can also use paths relative to the directories you described. Note that the shortest match wins, so in cases where there are two files in a given directory -- the file closest to the root (or with the shortest dir name) will be grabbed:
 
 ```ruby
