@@ -1,4 +1,4 @@
-require 'borrower/manifest/file'
+require 'borrower/manifest/config_file'
 
 module Borrower
   class Manifest
