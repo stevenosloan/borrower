@@ -1,3 +1,5 @@
+# 0.7.0
+- skip merge & yields on binary content
 - implement a manifest file, must be called manifest.borrower for now
 
 # 0.6.0
