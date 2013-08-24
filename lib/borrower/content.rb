@@ -16,7 +16,7 @@ module Borrower
 
       def put content, destination
         FileUtils.mkdir_p( File.dirname(destination) )
-        File.open( destination, 'w', internal_encoding: content.encoding ) do |file|
+        File.open( destination, 'wb' ) do |file|
           file.write content
         end
       end

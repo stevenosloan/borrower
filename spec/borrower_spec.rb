@@ -67,4 +67,31 @@ describe Borrower do
     Borrower.take( file_destination ).should == "Hi I'm a file foo"
   end
 
+  context "binary files" do
+
+    let(:binary_file) { File.join( Dir.pwd, 'spec/fixture', 'image.png' ) }
+    let(:binary_dest) { File.join( TMP, 'image.png' ) }
+
+    it "borrows them as it would any other file" do
+      borrow binary_file, to: binary_dest
+
+      expect( File.exists?(binary_dest) ).to be_true
+    end
+
+    it "skips merge attempts" do
+      borrow binary_file, to: binary_dest, merge: true
+
+      expect( File.exists?(binary_dest) ).to be_true
+    end
+
+    it "skips block manipulation" do
+      borrow binary_file, to: binary_dest do |f|
+        f.gsub( "foo", "bar" )
+      end
+
+      expect( File.exists?(binary_dest) ).to be_true
+    end
+
+  end
+
 end
