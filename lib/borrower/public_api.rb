@@ -14,10 +14,11 @@ module Borrower
     # write the content to a destination file
     #
     # @param [String] content content for the file
-    # @param [String] to path to write contents to
+    # @param [String] destination path to write contents to
+    # @param [Symbol] on_conflict what to do if the destination exists
     # @return [Void]
-    def put content, to
-      Borrower::Content.put content, to
+    def put content, destination, on_conflict=:overwrite
+      Borrower::Content.put content, destination
     end
 
     # parse through the content and merge
