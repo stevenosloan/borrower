@@ -8,7 +8,7 @@ module Borrower
     # @param [String] from the path to the file
     # @return [String] contents of the file
     def take from
-      Borrower::Content.get from
+      Content.get from
     end
 
     # write the content to a destination file
@@ -18,7 +18,19 @@ module Borrower
     # @param [Symbol] on_conflict what to do if the destination exists
     # @return [Void]
     def put content, destination, on_conflict=:overwrite
-      Borrower::Content.put content, destination
+
+      if on_conflict != :overwrite && Content::Item.new( destination ).exists?
+        case on_conflict
+        when :skip then return
+        when :prompt then
+          input = Util.get_input "a file already exists at #{destination}\noverwrite? (y|n): "
+          return unless input.downcase == "y"
+        when :raise_error then
+          raise "File already exists at #{destination}"
+        end
+      end
+
+      Content.put content, destination
     end
 
     # parse through the content and merge
