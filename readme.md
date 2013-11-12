@@ -5,6 +5,8 @@ For borrowing and/or concatenating little snippets.
 
 [![Build Status](https://travis-ci.org/stevenosloan/borrower.png?branch=feature/borrow_merge)](https://travis-ci.org/stevenosloan/borrower) [![Coverage Status](https://coveralls.io/repos/stevenosloan/borrower/badge.png?branch=master)](https://coveralls.io/r/stevenosloan/borrower?branch=master) [![Code Climate](https://codeclimate.com/github/stevenosloan/borrower.png)](https://codeclimate.com/github/stevenosloan/borrower)
 
+Check out the ruby versions we're testing against in [travis.yml](.travis.yml). Don't see a ruby version you're using? Pull requests are welcome.
+
 Use
 ---
 
