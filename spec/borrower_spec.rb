@@ -94,4 +94,20 @@ describe Borrower do
 
   end
 
+  context "file conflicts" do
+
+    before :each do
+      given_file file_destination, "I'm conflicted"
+    end
+
+    context "conflict resolution set to :never" do
+      it "doesn't overwrite the existing file" do
+        borrow local_file, to: file_destination
+
+        expect( Borrower.take(file_destination) ).not_to eq Borrower.take(local_file)
+      end
+    end
+
+  end
+
 end
