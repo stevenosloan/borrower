@@ -119,6 +119,23 @@ $(document).ready( function(){
 borrow 'your_file.txt', to: 'foo.txt', merge: true, comment: '??'
 ```
 
+### File Conflicts
+
+In the case that a file already exists at the destination_path, by default Borrower will overwrite the file. To change this behavior you can pass an `:on_conflict` option.
+
+```ruby
+borrow 'from', to: 'to', on_conflict: :overwrite
+# => the default, will overwrite the file
+
+borrow 'from', to: 'to', on_conflict: :prompt
+# => will ask if the file should be overwritten
+
+borrow 'from', to: 'to', on_conflict: :skip
+# => skips existing files
+
+borrow 'from', to: 'to', on_conflict: :raise_error
+# => raises an error
+```
 
 Testing
 -------

@@ -1,3 +1,6 @@
+# 0.8.0
+- add an `on_conflict` option to borrow and ::put, existing behavior remains overwriting existing files
+
 # 0.7.0
 - skip merge & yields on binary content
 - implement a manifest file, must be called manifest.borrower for now
