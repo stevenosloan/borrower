@@ -5,6 +5,7 @@ require "net/https"
 require "uri"
 
 # borrower
+require 'borrower/util'
 require 'borrower/version'
 require 'borrower/content'
 require 'borrower/manifest'
@@ -35,6 +36,7 @@ module Borrower::DSL
   # @return [Void]
   def borrow path, options={}, &block
     destination = options.delete(:to) { raise ArgumentError, "missing 'to:' argument" }
+    on_conflict = options.delete(:on_conflict) { nil }
     content = Borrower.take(path)
 
     if content.ascii_only?
@@ -42,7 +44,7 @@ module Borrower::DSL
       content = yield content if block_given?
     end
 
-    Borrower.put content, destination
+    Borrower.put *[content, destination, on_conflict].compact
   end
 
 end

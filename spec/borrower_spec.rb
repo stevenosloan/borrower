@@ -94,20 +94,18 @@ describe Borrower do
 
   end
 
-  context "file conflicts" do
+  describe "on_conflict options" do
+    it "doesn't pass an option to put if none is set" do
+      expect( Borrower ).to receive(:put).with( "Hi I'm a file", file_destination )
 
-    before :each do
-      given_file file_destination, "I'm conflicted"
+      borrow local_file, to: file_destination
     end
 
-    context "conflict resolution set to :never" do
-      it "doesn't overwrite the existing file" do
-        borrow local_file, to: file_destination
+    it "passes an option if set" do
+      expect( Borrower ).to receive(:put).with( "Hi I'm a file", file_destination, :skip )
 
-        expect( Borrower.take(file_destination) ).not_to eq Borrower.take(local_file)
-      end
+      borrow local_file, to: file_destination, on_conflict: :skip
     end
-
   end
 
 end
