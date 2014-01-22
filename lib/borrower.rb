@@ -39,7 +39,7 @@ module Borrower::DSL
     on_conflict = options.delete(:on_conflict) { nil }
     content = Borrower.take(path)
 
-    if content.ascii_only?
+    if content.valid_encoding?
       content = Borrower.merge(content, options) if options.fetch(:merge) { false }
       content = yield content if block_given?
     end

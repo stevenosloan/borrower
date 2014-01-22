@@ -92,6 +92,17 @@ describe Borrower do
       expect( File.exists?(binary_dest) ).to be_true
     end
 
+    it "doesn't skip block manipulation of odd, but utf-8 files" do
+      source = File.join( Dir.pwd, 'spec/fixture', 'non_ascii.txt' )
+      dest   = File.join( TMP, 'non_ascii.txt' )
+
+      borrow source, to: dest do |f|
+        "woo"
+      end
+      expect( File.exists?(dest) ).to be_true
+      expect( IO.read(dest) ).to eq "woo"
+    end
+
   end
 
   describe "on_conflict options" do

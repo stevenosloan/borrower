@@ -1,3 +1,5 @@
+- change the "binary" check to instead check for valid encoding
+
 # 0.8.0
 - add an `on_conflict` option to borrow and ::put, existing behavior remains overwriting existing files
 
