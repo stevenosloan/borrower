@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'rubysl', platforms: [:rbx]
+gem 'rubysl',      platforms: [:rbx]
+gem 'rubysl-json', platforms: [:rbx]
 
 group :test do
   gem 'rake'
