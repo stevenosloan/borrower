@@ -30,7 +30,17 @@ def cleanup_tmp
   `rm -rf #{TMP}`
 end
 
-require 'coveralls'
-Coveralls.wear!
+if ENV['TRAVIS'] || ENV['COVERAGE']
+  require 'simplecov'
+
+  if ENV['TRAVIS']
+    require 'coveralls'
+    SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+  end
+
+  SimpleCov.start do
+    add_filter '/spec/'
+  end
+end
 
 require 'borrower'

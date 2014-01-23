@@ -5,6 +5,7 @@ gemspec
 platforms :rbx do
   gem 'rubysl'
   gem 'json'
+  gem 'rubinius-developer_tools'
 end
 
 group :test do
