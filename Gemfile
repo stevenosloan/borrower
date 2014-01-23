@@ -2,8 +2,10 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'rubysl',      platforms: [:rbx]
-gem 'rubysl-json', platforms: [:rbx]
+platforms :rbx do
+  gem 'rubysl'
+  gem 'json'
+end
 
 group :test do
   gem 'rake'
