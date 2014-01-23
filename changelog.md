@@ -1,3 +1,4 @@
+# 0.8.1
 - change the "binary" check to instead check for valid encoding
 
 # 0.8.0
