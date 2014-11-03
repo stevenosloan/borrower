@@ -139,6 +139,51 @@ borrow 'from', to: 'to', on_conflict: :raise_error
 # => raises an error
 ```
 
+
+## Utilities
+
+At its core borrower abstracts some common tasks over the file system.
+
+### Fetch Content
+```ruby
+Borrower.take 'path/to/file'
+```
+
+### Write Content
+```ruby
+on_conflict = :overwrite
+Borrower.put "content for file", 'path/to/destination', on_conflict
+
+on_conflict = :overwrite
+# => replaces the contents of the file if already present
+
+on_conflict = :skip
+# => skips putting content
+
+on_conflict = :propt
+# => asks via stdout & stdin if the file should be overwriten
+
+on_conflict = :raise_error
+# => raises an error
+```
+
+### Add lookup paths or files
+```ruby
+Borrower.manifest do |m|
+  m.file "jquery", "http://code.jquery.com/jquery-1.10.2.min.js"
+  # => adds an alias for jquery
+  m.dir  "vendor"
+  # => adds the vendor dir to the lookup paths
+end
+```
+
+### Find file in borrower paths
+```ruby
+Borrower.find 'partial/path/to/file'
+# => full path to file
+```
+
+
 Testing
 -------
 
