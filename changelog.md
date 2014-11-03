@@ -1,3 +1,5 @@
+- add an "expanded_path" step to Manifest#find to also search for files at an expanded path.
+
 # 0.8.1
 - change the "binary" check to instead check for valid encoding
 

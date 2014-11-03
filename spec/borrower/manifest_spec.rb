@@ -16,6 +16,7 @@ describe Borrower::Manifest do
   let(:remote_file) { "https://gist.github.com/stevenosloan/5578606/raw/97ab1305184bdeac33472f9f1fcc1c9e278a1bb3/dummy.txt" }
   let(:base_dir)  { File.join( TMP ) }
   let(:files_dir) { File.join( TMP, 'files' ) }
+  let(:expanded_file) { "~/.bashrc" }
 
   context "with no manifest file" do
 
@@ -45,6 +46,10 @@ describe Borrower::Manifest do
       Borrower.find("files/baz.txt").should == File.join( TMP, "files/baz.txt" )
       Borrower.find("woo.txt").should       == File.join( TMP, "files/woo.txt" )
       Borrower.find("foo.txt").should       == File.join( TMP, "files/foo.txt" )
+    end
+
+    it "expands path to find files" do
+      expect( Borrower.find(expanded_file) ).to eq File.expand_path(expanded_file)
     end
 
     it "raises error if no file is found" do

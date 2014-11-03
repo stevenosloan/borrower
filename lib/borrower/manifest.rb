@@ -35,10 +35,22 @@ module Borrower
       path = check_for_file_in_manifest_directories(file) || false
       return path if path
 
+      path = check_for_file_with_expanded_path(file) || false
+      return path if path
+
       raise "Could not file #{file}"
     end
 
     private
+
+      def check_for_file_with_expanded_path file
+        path = File.expand_path(file)
+        if File.exists? path
+          return path
+        else
+          return false
+        end
+      end
 
       def check_for_file_in_manifest_files file
         files.fetch(file) { false }
