@@ -88,7 +88,7 @@ directories:
     end
 
     it "detects that it is present" do
-      Borrower::Manifest::ConfigFile.present?.should be_true
+      Borrower::Manifest::ConfigFile.present?.should be_truthy
     end
 
     it "adds the given files to the manifest" do
@@ -97,8 +97,8 @@ directories:
     end
 
     it "add the given directories to the manifest" do
-      Borrower.manifest.directories.include?( base_dir ).should be_true
-      Borrower.manifest.directories.include?( files_dir ).should be_true
+      Borrower.manifest.directories.include?( base_dir ).should be_truthy
+      Borrower.manifest.directories.include?( files_dir ).should be_truthy
     end
 
   end

@@ -10,7 +10,7 @@ end
 
 group :test do
   gem 'rake'
-  gem 'rspec'
+  gem 'rspec', '3.1.0'
   gem 'coveralls', require: false
 end
 

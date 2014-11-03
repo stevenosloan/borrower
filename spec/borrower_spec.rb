@@ -75,13 +75,13 @@ describe Borrower do
     it "borrows them as it would any other file" do
       borrow binary_file, to: binary_dest
 
-      expect( File.exists?(binary_dest) ).to be_true
+      expect( File.exists?(binary_dest) ).to be_truthy
     end
 
     it "skips merge attempts" do
       borrow binary_file, to: binary_dest, merge: true
 
-      expect( File.exists?(binary_dest) ).to be_true
+      expect( File.exists?(binary_dest) ).to be_truthy
     end
 
     it "skips block manipulation" do
@@ -89,7 +89,7 @@ describe Borrower do
         f.gsub( "foo", "bar" )
       end
 
-      expect( File.exists?(binary_dest) ).to be_true
+      expect( File.exists?(binary_dest) ).to be_truthy
     end
 
     it "doesn't skip block manipulation of odd, but utf-8 files" do
@@ -99,7 +99,7 @@ describe Borrower do
       borrow source, to: dest do |f|
         "woo"
       end
-      expect( File.exists?(dest) ).to be_true
+      expect( File.exists?(dest) ).to be_truthy
       expect( IO.read(dest) ).to eq "woo"
     end
 
