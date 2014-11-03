@@ -1,3 +1,4 @@
+# 0.9.1
 - slimline the Content#get_response methdo to use more default Net::HTTP and not set old (broken) SSLv3
 
 # 0.9.0
