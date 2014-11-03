@@ -74,12 +74,7 @@ module Borrower
         def get_response path
           uri = URI.parse(path)
           request = Net::HTTP.new(uri.host, uri.port)
-
-          if uri.scheme == "https"
-            request.use_ssl = true
-            request.verify_mode = OpenSSL::SSL::VERIFY_NONE
-            request.ssl_version = :SSLv3
-          end
+          request.use_ssl = ( uri.scheme == "https" )
 
           return request.get(uri.request_uri)
         end

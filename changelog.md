@@ -1,3 +1,5 @@
+- slimline the Content#get_response methdo to use more default Net::HTTP and not set old (broken) SSLv3
+
 # 0.9.0
 - add an "expanded_path" step to Manifest#find to also search for files at an expanded path.
 
