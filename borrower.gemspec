@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
   s.require_path  = "lib"
 
   # Networking
-  s.add_dependency("net-ssh", ["~> 2.6.5"])
+  s.add_dependency("net-ssh", ["~> 2.6"])
 
 end
