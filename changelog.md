@@ -1,3 +1,4 @@
+# 0.9.2
 - fix finding of nested files in directories added to the manifest
 
 # 0.9.1
