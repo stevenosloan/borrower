@@ -1,3 +1,5 @@
+- fix finding of files that would need to be regex escaped to match (`_$variables.scss` being an example)
+
 # 0.9.2
 - fix finding of nested files in directories added to the manifest
 

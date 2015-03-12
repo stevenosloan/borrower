@@ -60,7 +60,7 @@ module Borrower
         matches = []
         directories.each do |dir|
           Dir[File.join( dir, '**/*' )].each do |possibility|
-            matches << possibility if possibility.match( file )
+            matches << possibility if possibility.match( Regexp.escape(file) )
           end
         end
         path = matches.sort { |a,b| a.length <=> b.length }.first

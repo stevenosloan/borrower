@@ -6,6 +6,7 @@ describe Borrower::Manifest do
     given_files [ "baz.txt",
                   "files/baz.txt",
                   "files/bar/baz.txt",
+                  "files/_$bar.txt",
                   "files/woo.txt",
                   "files/foo.txt" ]
   end
@@ -49,6 +50,7 @@ describe Borrower::Manifest do
       Borrower.find("baz.txt").should           == File.join( TMP, "baz.txt" )
       Borrower.find("files/baz.txt").should     == File.join( TMP, "files/baz.txt" )
       Borrower.find("files/bar/baz.txt").should == File.join( TMP, "files/bar/baz.txt")
+      Borrower.find("files/_$bar.txt").should   == File.join( TMP, "files/_$bar.txt")
       Borrower.find("woo.txt").should           == File.join( TMP, "files/woo.txt" )
       Borrower.find("foo.txt").should           == File.join( TMP, "files/foo.txt" )
     end
