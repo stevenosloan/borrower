@@ -3,7 +3,11 @@ require 'spec_helper'
 describe Borrower::Manifest do
 
   before :each do
-    given_files [ "baz.txt", "files/baz.txt", "files/woo.txt", "files/foo.txt" ]
+    given_files [ "baz.txt",
+                  "files/baz.txt",
+                  "files/bar/baz.txt",
+                  "files/woo.txt",
+                  "files/foo.txt" ]
   end
 
   after :each do
@@ -42,10 +46,11 @@ describe Borrower::Manifest do
     end
 
     it "creates list of files from directories" do
-      Borrower.find("baz.txt").should       == File.join( TMP, "baz.txt" )
-      Borrower.find("files/baz.txt").should == File.join( TMP, "files/baz.txt" )
-      Borrower.find("woo.txt").should       == File.join( TMP, "files/woo.txt" )
-      Borrower.find("foo.txt").should       == File.join( TMP, "files/foo.txt" )
+      Borrower.find("baz.txt").should           == File.join( TMP, "baz.txt" )
+      Borrower.find("files/baz.txt").should     == File.join( TMP, "files/baz.txt" )
+      Borrower.find("files/bar/baz.txt").should == File.join( TMP, "files/bar/baz.txt")
+      Borrower.find("woo.txt").should           == File.join( TMP, "files/woo.txt" )
+      Borrower.find("foo.txt").should           == File.join( TMP, "files/foo.txt" )
     end
 
     it "expands path to find files" do

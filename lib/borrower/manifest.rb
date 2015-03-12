@@ -59,7 +59,7 @@ module Borrower
       def check_for_file_in_manifest_directories file
         matches = []
         directories.each do |dir|
-          Dir[File.join( dir, '*' )].each do |possibility|
+          Dir[File.join( dir, '**/*' )].each do |possibility|
             matches << possibility if possibility.match( file )
           end
         end

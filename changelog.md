@@ -1,3 +1,5 @@
+- fix finding of nested files in directories added to the manifest
+
 # 0.9.1
 - slimline the Content#get_response methdo to use more default Net::HTTP and not set old (broken) SSLv3
 
