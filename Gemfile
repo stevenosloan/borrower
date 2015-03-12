@@ -15,5 +15,5 @@ group :test do
 end
 
 group :development do
-  gem 'pry-debugger'
+  gem 'pry-byebug'
 end
