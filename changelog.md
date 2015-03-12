@@ -1,3 +1,4 @@
+# 0.9.3
 - fix finding of files that would need to be regex escaped to match (`_$variables.scss` being an example)
 
 # 0.9.2
