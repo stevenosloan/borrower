@@ -1,3 +1,4 @@
+- drop unused dependency on net-ssh
 - drop testing for rbx
 
 # 0.9.3
